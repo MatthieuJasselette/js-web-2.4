@@ -25,6 +25,7 @@ let getChar = async () => {
 
 //fct to display
 let displayChar = (index, input) => {
+  console.log(input.id);
  let dispName = document.getElementsByClassName("displayName")[0];
  dispName.innerText = input.name;
  let dispShortD = document.getElementsByClassName("displayShortD")[0];
@@ -35,7 +36,14 @@ let displayChar = (index, input) => {
 
 //fct to create
 let createChar = async () => {
+  let newName = document.getElementById("newName").value;
+  let newShortD = document.getElementById("newShortD").value;
+  let newLongD = document.getElementById("newLongD").value;
+  let newString = {name: newName, shortDescription: newShortD, description: newLongD};
+  console.log(newString);
   try {
+     await axios.post('https://character-database.becode.xyz/characters', newString);
+     displayCharPool();
 
   } catch (error) {
     console.error(error);
@@ -43,24 +51,37 @@ let createChar = async () => {
 }
 
 // button to call createChar
-// let btnCreate = document.getElementsByClassName("buttonCreate");
-// btnCreate.addEventListener('click', () => {createChar()});
+let btnCreate = document.getElementsByClassName("buttonCreate")[0];
+btnCreate.addEventListener('click', () => {createChar()});
 
 //fct to edit
-// let editChar = async () => {
+// let editChar = async (index, input) => {
 //
 // }
 
 //fct to delete
-// let deleteChar = async () => {
-//
-// }
+let deleteChar = async (index, input) => {
+  let idDelete = input.id;
+  console.log("deleteControl: "+idDelete);
+  try{
+    await axios.delete('https://character-database.becode.xyz/characters/'+idDelete);
+     displayCharPool();
+  } catch (error){
+    console.error(error);
+  }
+
+}
+
+//button to call deleteChar
+let btnDelete = document.getElementsByClassName("buttonDelete")[0];
+btnDelete.addEventListener('click', () => {deleteChar()});
 
 // fct that creates and appends generic html structure then fills it with api content
 let displayCharPool =  async () => {
   let charPool = await getChar();
   console.log(charPool); //control
   let charBox = document.querySelector(".characterBox");
+  charBox.innerHTML = "";
   for (let i = 0 ; i < 20 ;  i++){
     console.log("loop control");
     //create content structure
@@ -88,14 +109,14 @@ let displayCharPool =  async () => {
     charEdit.setAttribute("class", "btn btn-primary");
     charEdit.setAttribute("data-toggle", "modal");
     charEdit.setAttribute("data-target", "#editionModal")
-    charEdit.addEventListener('click', () => {editChar(i)});
+    charEdit.addEventListener('click', () => {editChar(i, charPool[i])});
     charEdit.innerText = "Edit Content";
     let charDelete = document.createElement("button");
     charDelete.setAttribute("type", "button");
     charDelete.setAttribute("class", "btn btn-primary");
-    charDelete.setAttribute("data-toggle", "modal");
-    charDelete.setAttribute("data-target", "#deleteModal")
-    charDelete.addEventListener('click', () => {deleteChar(i)});
+    // charDelete.setAttribute("data-toggle", "modal");
+    // charDelete.setAttribute("data-target", "#deleteModal")
+    charDelete.addEventListener('click', () => {deleteChar(i, charPool[i])});
     charDelete.innerText = "Delete Content";
     //append content structure
     charBox.appendChild(charItem);
