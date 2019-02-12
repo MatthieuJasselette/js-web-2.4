@@ -6,15 +6,14 @@
 <div class="sandBox">
   <div class="characterBox">
     <!-- content generated through script -->
-
-    <div class="characterItem">
+    <!-- <div class="characterItem">
       <div class="characterBody">
         <div class="characterInfo">
-          <p>Name</p>
-          <p>Short Description</p>
+          <p class="characterName">Name</p>
+          <p class="characterDescription">Short Description</p>
         </div>
         <div class="characterImg">
-            <img src="#" alt="#">
+            <img src="#" alt="#" class="characterImgContent">
         </div>
       </div>
       <div class="characterFooter">
@@ -24,6 +23,27 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
           Delete content
         </button>
+      </div>
+    </div> -->
+  </div>
+  <div class="modal fade" id="displayModal" tabindex="-1" role="dialog" aria-labelledby="displayModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="displayModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5 class="displayName"></h5>
+          <p class="displayShortD"></p>
+          <p class="displayLongD"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
@@ -44,8 +64,8 @@
         </div>
         <div class="modal-body">
           <input type="text" id="newName" value="">
-          <textarea id="newShortDescription" rows="2" cols="40"></textarea>
-          <textarea id="newLongDescription" rows="2" cols="40"></textarea>
+          <textarea id="newShortD" rows="2" cols="40"></textarea>
+          <textarea id="newLongD" rows="2" cols="40"></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
