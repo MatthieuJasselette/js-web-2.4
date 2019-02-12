@@ -39,8 +39,11 @@ let createChar = async () => {
   let newName = document.getElementById("newName").value;
   let newShortD = document.getElementById("newShortD").value;
   let newLongD = document.getElementById("newLongD").value;
-  let newString = {name: newName, shortDescription: newShortD, description: newLongD};
-  console.log(newString);
+  let newString = {
+    name: newName,
+    shortDescription: newShortD,
+    description: newLongD
+  };
   try {
      await axios.post('https://character-database.becode.xyz/characters', newString);
      displayCharPool();
@@ -59,9 +62,18 @@ btnCreate.addEventListener('click', () => {createChar()});
 //
 // }
 
+//fct to select an entry
+let bullet ="bulletControl";
+console.log(bullet);
+
+let loadBullet = (input) => {
+  bullet = input.id;
+  console.log("bulletControl: "+bullet);
+}
+
 //fct to delete
-let deleteChar = async (index, input) => {
-  let idDelete = input.id;
+let deleteChar = async () => {
+  let idDelete = bullet;
   console.log("deleteControl: "+idDelete);
   try{
     await axios.delete('https://character-database.becode.xyz/characters/'+idDelete);
@@ -87,36 +99,45 @@ let displayCharPool =  async () => {
     //create content structure
     let charItem = document.createElement("div");
     charItem.setAttribute("class", "characterItem");
+
     let charBody = document.createElement("div");
     charBody.setAttribute("class", "characterBody");
+
     let charInfo = document.createElement("div");
     charInfo.setAttribute("class", "characterInfo");
+
     let charName = document.createElement("h5");
     charName.setAttribute("class", "characterName");
     charName.addEventListener('click', () => {displayChar(i, charPool[i])});
     charName.setAttribute("data-toggle", "modal");
     charName.setAttribute("data-target", "#displayModal");
+
     let charDescr = document.createElement("p");
     charDescr.setAttribute("class", "characterDescription");
+
     let charImg = document.createElement("div");
-    charImg.setAttribute("class", "characterImg")
-    let charImgContent = document.createElement("img")
-    charImgContent.setAttribute("class", "characterImgContent")
+    charImg.setAttribute("class", "characterImg");
+
+    let charImgContent = document.createElement("img");
+    charImgContent.setAttribute("class", "characterImgContent");
+
     let charFooter =  document.createElement("div");
-    charFooter.setAttribute("class", "characterFooter")
+    charFooter.setAttribute("class", "characterFooter");
+
     let charEdit = document.createElement("button");
     charEdit.setAttribute("type", "button");
     charEdit.setAttribute("class", "btn btn-primary");
     charEdit.setAttribute("data-toggle", "modal");
     charEdit.setAttribute("data-target", "#editionModal")
-    charEdit.addEventListener('click', () => {editChar(i, charPool[i])});
+    charEdit.addEventListener('click', () => {editChar(charPool[i])});
     charEdit.innerText = "Edit Content";
+
     let charDelete = document.createElement("button");
     charDelete.setAttribute("type", "button");
     charDelete.setAttribute("class", "btn btn-primary");
-    // charDelete.setAttribute("data-toggle", "modal");
-    // charDelete.setAttribute("data-target", "#deleteModal")
-    charDelete.addEventListener('click', () => {deleteChar(i, charPool[i])});
+    charDelete.setAttribute("data-toggle", "modal");
+    charDelete.setAttribute("data-target", "#deleteModal")
+    charDelete.addEventListener('click', () => {loadBullet(charPool[i])});
     charDelete.innerText = "Delete Content";
     //append content structure
     charBox.appendChild(charItem);
