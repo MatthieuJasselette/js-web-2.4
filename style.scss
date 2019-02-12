@@ -8,3 +8,17 @@
   If you need some CSS for any reason you can put it here.
 */
 
+.characterBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.characterItem {
+  margin: 2px 2px;
+}
+
+.characterBody {
+  display: flex;
+  flex-direction: row;
+}

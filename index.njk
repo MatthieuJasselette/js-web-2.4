@@ -3,7 +3,106 @@
 {% extends "_common.njk" %}
 
 {% block content %}
-<p>
-  <i class="fas fa-arrow-right"></i> Insert content here. <i class="fas fa-arrow-left"></i>
-</p>
+<div class="sandBox">
+  <div class="characterBox">
+    <!-- content generated through script -->
+
+    <div class="characterItem">
+      <div class="characterBody">
+        <div class="characterInfo">
+          <p>Name</p>
+          <p>Short Description</p>
+        </div>
+        <div class="characterImg">
+            <img src="#" alt="#">
+        </div>
+      </div>
+      <div class="characterFooter">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editionModal">
+          Edit content
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
+          Delete content
+        </button>
+      </div>
+    </div>
+  </div>
+    <!-- Button trigger creationModal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#creationModal">
+    Create content
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="creationModal" tabindex="-1" role="dialog" aria-labelledby="creationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="creationModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="newName" value="">
+          <textarea id="newShortDescription" rows="2" cols="40"></textarea>
+          <textarea id="newLongDescription" rows="2" cols="40"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Button trigger editionModal; integrate through script
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editionModal">
+    Edit content
+  </button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="editionModal" tabindex="-1" role="dialog" aria-labelledby="editionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editionModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Button trigger deleteModal; integrate through script
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
+    Delete content
+  </button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
