@@ -11,6 +11,7 @@ import axios from 'axios';
   Put the JavaScript code you want below.
 */
 
+
 //fct that imports api content;  used in displayCharPool
 let getChar = async () => {
   try {
@@ -23,11 +24,27 @@ let getChar = async () => {
 }
 
 //fct to display
-let displayChar = () => {
+let displayChar = (index, input) => {
  let dispName = document.getElementsByClassName("displayName")[0];
- dispName.innerText = document.getElementsByClassName("characterName")[i].innerText; // input
- let dispShortD = document.getElementsByClassName("characterDescription[i]")
+ dispName.innerText = input.name;
+ let dispShortD = document.getElementsByClassName("displayShortD")[0];
+ dispShortD.innerText = input.shortDescription;
+ let dispLongD =document.getElementsByClassName("displayLongD")[0];
+ dispLongD.innerText = input.description; //change mkDwn to HTML
 }
+
+//fct to create
+let createChar = async () => {
+  try {
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// button to call createChar
+// let btnCreate = document.getElementsByClassName("buttonCreate");
+// btnCreate.addEventListener('click', () => {createChar()});
 
 //fct to edit
 // let editChar = async () => {
@@ -44,7 +61,7 @@ let displayCharPool =  async () => {
   let charPool = await getChar();
   console.log(charPool); //control
   let charBox = document.querySelector(".characterBox");
-  for (let i = 0 ; i < 6 ;  i++){
+  for (let i = 0 ; i < 20 ;  i++){
     console.log("loop control");
     //create content structure
     let charItem = document.createElement("div");
@@ -55,7 +72,7 @@ let displayCharPool =  async () => {
     charInfo.setAttribute("class", "characterInfo");
     let charName = document.createElement("h5");
     charName.setAttribute("class", "characterName");
-    charName.addEventListener('click', () => {displayChar(i)});
+    charName.addEventListener('click', () => {displayChar(i, charPool[i])});
     charName.setAttribute("data-toggle", "modal");
     charName.setAttribute("data-target", "#displayModal");
     let charDescr = document.createElement("p");

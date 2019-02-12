@@ -4,6 +4,10 @@
 
 {% block content %}
 <div class="sandBox">
+    <!-- Button trigger creationModal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#creationModal">
+    Create content
+  </button>
   <div class="characterBox">
     <!-- content generated through script -->
     <!-- <div class="characterItem">
@@ -26,6 +30,8 @@
       </div>
     </div> -->
   </div>
+
+<!-- Display Modal -->
   <div class="modal fade" id="displayModal" tabindex="-1" role="dialog" aria-labelledby="displayModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -42,17 +48,12 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
-    <!-- Button trigger creationModal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#creationModal">
-    Create content
-  </button>
 
-  <!-- Modal -->
+  <!-- Creation Modal -->
   <div class="modal fade" id="creationModal" tabindex="-1" role="dialog" aria-labelledby="creationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -63,13 +64,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <input type="text" id="newName" value="">
-          <textarea id="newShortD" rows="2" cols="40"></textarea>
-          <textarea id="newLongD" rows="2" cols="40"></textarea>
+          <label for="">Name
+            <input type="text" id="newName" value="">
+          </label>
+          <label for="">Short description
+            <textarea id="newShortD" rows="2" cols="40"></textarea>
+          </label>
+          <label for="">Long description
+            <textarea id="newLongD" rows="2" cols="40"></textarea>
+          </label>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary btnCreate">Save changes</button>
         </div>
       </div>
     </div>
@@ -79,7 +86,7 @@
     Edit content
   </button> -->
 
-  <!-- Modal -->
+  <!-- Edition Modal -->
   <div class="modal fade" id="editionModal" tabindex="-1" role="dialog" aria-labelledby="editionModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -93,7 +100,6 @@
           ...
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
@@ -104,7 +110,7 @@
     Delete content
   </button> -->
 
-  <!-- Modal -->
+  <!-- Deletion Modal -->
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -115,11 +121,11 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <p>Are you sure you wish to delete this character ?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Yes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
         </div>
       </div>
     </div>
