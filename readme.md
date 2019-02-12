@@ -3,22 +3,22 @@ Link to the [github page](https://matthieujasselette.github.io/js-web-2.4/).
 
 In this exercise we will use the Character Database API to make a Character Manager.
 
-##2.4.1 - List the characters
+## 2.4.1 - List the characters
 Display the list of all the characters contained in the database. You can use a table or a list of cards to display them, at your convenience.
 
 Make sure the following fields are displayed:
 
 name
 short_description
-##2.4.1 - Display image
+## 2.4.1 - Display image
 Also add the image in your list of characters.
 
 Hint: Data URIs
 
-##2.4.2 - Long description
+## 2.4.2 - Long description
 When we click on one of the characters in the list, display a modal window that will show all the information about that specific character including the description field. You can use the modals provided by Bootstrap or any other solution as long as it looks and work like a model. Also be warned that the description field is in Markdown and, of course, we want to display it as HTML in your application.
 
-##2.4.3 - Creation of a character
+## 2.4.3 - Creation of a character
 Add a "Create" button that will open a modal. That modal should contain a form with an input for each of the following fields:
 
 name
@@ -26,15 +26,15 @@ shortDescription
 description (you can just let the user enter Markdown)
 When the form is completed create the character, close the modal and reactualize the list of characters.
 
-##2.4.4 - Edition of a character
+## 2.4.4 - Edition of a character
 Add an edit button next to each character in the list. When clicked it opens a modal allowing to edit the character.
 
-##2.4.5 - Images edition
+## 2.4.5 - Images edition
 Modify both the create and edit modals to allow the edition of the image.
 
 Hint: Reading local files in JavaScript
 
-##2.4.6 - Delete
+## 2.4.6 - Delete
 Add a "Delete" button to delete characters. It should display a modal asking for confirmation.
 
 # Becode Template for JavaScript Exercises
