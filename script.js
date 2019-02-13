@@ -19,7 +19,6 @@ import {markdown} from 'markdown';
 let getChar = async () => {
   try {
     let importChar = await axios.get('https://character-database.becode.xyz/characters')
-    console.log("control getChar"); //control
     return importChar.data;
   } catch (error) {
     console.error(error);
@@ -28,7 +27,6 @@ let getChar = async () => {
 
 //fct to display
 let displayChar = (index, input) => {
-  console.log(input.id);
  let dispName = document.getElementsByClassName("displayName")[0];
  dispName.innerText = input.name;
  let dispShortD = document.getElementsByClassName("displayShortD")[0];
@@ -42,11 +40,15 @@ let createChar = async () => {
   let newName = document.getElementById("newName").value;
   let newShortD = document.getElementById("newShortD").value;
   let newLongD = document.getElementById("newLongD").value;
+  let newImg = document.querySelector(".thumb").src;
+  newImg = newImg.substring(newImg.indexOf(",")+1);;
   let newString = {
     name: newName,
     shortDescription: newShortD,
-    description: newLongD
+    description: newLongD,
+    image: newImg
   };
+  console.log(newString);
   try {
      await axios.post('https://character-database.becode.xyz/characters', newString);
      displayCharPool();
@@ -71,13 +73,14 @@ let toEdit ="";
 //fct to store a char.id to edit; used in editCharYes
 let editChar = (input) => {
   toEdit = input.id;
-  console.log("ecit Control "+input.id);
   let editName = document.getElementById("editName");
   let editShortD = document.getElementById("editShortD");
   let editLongD = document.getElementById("editLongD");
+  // let editImg = document.getElementById("files");
   editName.value = input.name;
   editShortD.value = input.shortDescription;
   editLongD.value = input.description;
+  // editImg.src = input.image;
 }
 
 //fct to edit
@@ -86,20 +89,21 @@ let editCharYes = async () => {
   let editNameContent = document.getElementById("editName").value;
   let editShortDContent = document.getElementById("editShortD").value;
   let editLongDContent = document.getElementById("editLongD").value;
+  let editImg = document.querySelector(".thumb").src;
+  editImg = editImg.substring(editImg.indexOf(",")+1);
   let editString = {
     name: editNameContent,
     shortDescription: editShortDContent,
-    description: editLongDContent
+    description: editLongDContent,
+    image: editImg
   }
+
   try {
     await axios.put('https://character-database.becode.xyz/characters/'+idEdit, editString);
     displayCharPool();
   } catch (error) {
     console.error(error);
   }
-  document.getElementById("editName").value = "";
-  document.getElementById("editShortD").value = "";
-  document.getElementById("editLongD").value = "";
 }
 
 //button to call editCharYes
@@ -139,11 +143,9 @@ btnDelete.addEventListener('click', () => {deleteCharYes()});
 // fct that creates and appends generic html structure then fills it with api content
 let displayCharPool =  async () => {
   let charPool = await getChar();
-  console.log(charPool); //control
   let charBox = document.querySelector(".characterBox");
   charBox.innerHTML = "";
   for (let i = 0 ; i < charPool.length ;  i++){
-    console.log("loop control");
     //create content structure
     let charItem = document.createElement("div");
     charItem.setAttribute("class", "characterItem");
@@ -206,6 +208,39 @@ let displayCharPool =  async () => {
     }
   }
 }
+
+let handleFileSelect = (evt) => {
+  var files = evt.target.files; // FileList object
+  console.log(evt);
+
+  // Loop through the FileList and render image files as thumbnails.
+  for (var i = 0, f; f = files[i]; i++) {
+
+    // Only process image files.
+    if (!f.type.match('image.*')) {
+      continue;
+    }
+
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+      return function(e) {
+        // Render thumbnail.
+        var span = evt.target.parentElement.parentElement.querySelector('.span');
+        span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                          '" title="', escape(theFile.name), '"/>'].join('');
+      };
+    })(f);
+
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(f);
+  }
+}
+
+
+document.getElementById('filesCreate').addEventListener('change', handleFileSelect, false);
+document.getElementById('filesEdit').addEventListener('change', handleFileSelect, false);
 
 //fct call to fill the page
 displayCharPool();
